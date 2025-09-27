@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Home, Customer, Agent
+from .models import Home, Customer, Agent, Contact
 
 
 class HomePageView(View):
@@ -41,3 +41,11 @@ class PropertiesView(View):
             'homes': homes,
         }
         return render(request, 'properties.html', context)
+
+class ContactView(View):
+    def get(self, request, *args, **kwargs):
+        contact = Contact.objects.all()
+        context = {
+            'contact': contact,
+        }
+        return render(request, 'contact.html', context)
